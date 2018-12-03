@@ -11,17 +11,15 @@ import (
 	Part 1
  */
 func GetResultingFrequency(startingFrequency int, filePath string) int {
-	fileScannerDoublePointer, fileDoublePointer := getScanner(filePath)
-	scanner := *fileScannerDoublePointer
-	file := *fileDoublePointer
+	fileScanner, file := getScanner(filePath)
 	result := startingFrequency
 
 	// Ensure file will be closed when the function is finished
-	defer file.Close()
+	defer (*file).Close()
 
 	// Scan each line
-	for scanner.Scan() {
-		line := scanner.Text()
+	for (*fileScanner).Scan() {
+		line := (*fileScanner).Text()
 		freq, _ := strconv.Atoi(line)
 		result += freq
 	}
@@ -41,7 +39,7 @@ func GetFirstRepeatingFrequency(startingFrequency int, filePath string, timesRep
 	// Current Frequency
 	result := startingFrequency
 
-	for true {
+	for {
 		fileScanner, file := getScanner(filePath)
 
 		// Scan each line
@@ -63,9 +61,6 @@ func GetFirstRepeatingFrequency(startingFrequency int, filePath string, timesRep
 		// Close file
 		(*file).Close()
 	}
-
-	panic("Repeating frequency not found!")
-	return -1
 }
 
 func check(e error) {
