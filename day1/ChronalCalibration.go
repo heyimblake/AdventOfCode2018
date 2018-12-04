@@ -1,9 +1,7 @@
 package day1
 
 import (
-	"bufio"
-	"fmt"
-	"os"
+	"github.com/heyimblake/AdventOfCode-2018/util"
 	"strconv"
 )
 
@@ -11,7 +9,7 @@ import (
 	Part 1
  */
 func GetResultingFrequency(startingFrequency int, filePath string) int {
-	fileScanner, file := getScanner(filePath)
+	fileScanner, file := util.GetScanner(filePath)
 	result := startingFrequency
 
 	// Ensure file will be closed when the function is finished
@@ -39,47 +37,24 @@ func GetFirstRepeatingFrequency(startingFrequency int, filePath string, timesRep
 	// Current Frequency
 	result := startingFrequency
 
-	for {
-		fileScanner, file := getScanner(filePath)
+	// Get contents of file
+	lines, size := util.GetFileContents(filePath)
 
-		// Scan each line
-		for (*fileScanner).Scan() {
-			line := (*fileScanner).Text()
-			freq, _ := strconv.Atoi(line)
+	// Keep on looping until we find a result and exit
+	for {
+		for i := 0; i < size; i++ {
+			// Convert to int and add to frequency count
+			freq, _ := strconv.Atoi((*lines)[i])
 			result += freq
 
 			// Update Map
 			dupes[result]++
 
-			// Check for first duplicate
+			// Check for duplicate
 			if dupes[result] == timesRepeated {
-				(*file).Close()
 				return result
 			}
 		}
-
-		// Close file
-		(*file).Close()
 	}
 }
 
-func check(e error) {
-	if e != nil {
-		fmt.Printf("ERROR: Cannot open file. Does it exist?\n")
-		os.Exit(1)
-	}
-}
-
-func getScanner(filePath string) (**bufio.Scanner, **os.File) {
-	// Open Data File
-	file, err := os.Open(filePath)
-
-	// Check if we can continue
-	check(err)
-
-	// Create scanner
-	scanner := bufio.NewScanner(file)
-
-	// Return scanner and file double pointers
-	return &scanner, &file
-}
