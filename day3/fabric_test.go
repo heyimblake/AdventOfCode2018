@@ -6,7 +6,7 @@ import (
 )
 
 func TestCreateClaim(t *testing.T) {
-	contents, _ := util.GetFileContents("Day3.txt")
+	contents, _ := util.GetFileContents("input.txt")
 
 	claim := CreateClaim((*contents)[3])
 
@@ -46,7 +46,7 @@ func TestClaimToString(t *testing.T) {
 }
 
 func TestLoadClaimsFromFile(t *testing.T)  {
-	claims := LoadClaimsFromFile("Day3.txt")
+	claims := LoadClaimsFromFile("input.txt")
 	actual := claims[493]
 
 	if !claimEquals(&actual, 494, 651, 815, 25, 18) {
@@ -68,7 +68,7 @@ func TestLoadClaimsFromFile(t *testing.T)  {
 
 func TestFindOverlappingSquareInches(t *testing.T)  {
 	expected := 104712
-	actual := FindOverlappingSquareInches(PrepareClaims("Day3.txt"))
+	actual := FindOverlappingSquareInches(PrepareClaims("input.txt"))
 
 	if actual != expected {
 		t.Fatalf("Expected %d but got %d\n", expected, actual)
@@ -77,7 +77,7 @@ func TestFindOverlappingSquareInches(t *testing.T)  {
 
 func TestFindNonOverlappingClaim(t *testing.T)  {
 	expected := 840
-	actual := FindNonOverlappingClaim(PrepareClaims("Day3.txt")).Id
+	actual := FindNonOverlappingClaim(PrepareClaims("input.txt")).Id
 
 	if actual != expected {
 		t.Fatalf("Expected %d but got %d\n", expected, actual)

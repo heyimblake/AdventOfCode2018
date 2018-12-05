@@ -5,7 +5,7 @@ import (
 )
 
 func TestGetFileContents(t *testing.T) {
-	actual, _ := GetFileContents("../day1//Day1.txt")
+	actual, _ := GetFileContents("../day1//input.txt")
 
 	expected := "-10"
 	checkStrings(&t, 5, &actual, &expected)

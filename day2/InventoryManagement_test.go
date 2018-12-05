@@ -4,7 +4,7 @@ import "testing"
 
 func TestGenerateChecksum(t *testing.T) {
 	expected := 8892
-	actual := GenerateChecksum("Day2.txt")
+	actual := GenerateChecksum("input.txt")
 
 	if actual != expected {
 		t.Fatalf("Expected %d but got %d\n", expected, actual)
@@ -13,7 +13,7 @@ func TestGenerateChecksum(t *testing.T) {
 
 func TestGetCommonBoxIDLetters(t *testing.T) {
 	expected := "zihwtxagifpbsnwleydukjmqv"
-	actual := GetCommonBoxIDLetters("Day2.txt")
+	actual := GetCommonBoxIDLetters("input.txt")
 
 	if actual != expected {
 		t.Fatalf("Expected \"%s\" but got \"%s\"\n", expected, actual)
