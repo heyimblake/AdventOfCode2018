@@ -110,6 +110,9 @@ func FindOverlappingSquareInches(claims []*Claim) int {
 	return sqInchCount
 }
 
+/*
+	Part 2
+ */
 func FindNonOverlappingClaim(claims []*Claim) *Claim {
 	// Find the Claim where all its points has 1 claim to it
 	for _, claim := range claims {
